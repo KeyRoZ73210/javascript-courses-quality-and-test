@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+<main>
+
+    <h1>❓</span> Le jeu du pendu ❓</h1>
+    <p>Essayer de deviner le mot !</p>
+
+    <form action="/" method="post">
+        <fieldset class="uk-fieldset">
+
+            <legend class="uk-legend">Nombre d'essai restant : <%= numberOfTries %></legend>
+
+            <div class="uk-margin">
+                <input class="uk-input" type="text" name="word" placeholder="Tapez une lettre">
+            </div>
+
+            <div class="uk-margin">
+                <button class="uk-input uk-button-danger uk-form-width-medium" type="submit" name="reset" value="true">Reset</button>
+                <button class="uk-input uk-button-secondary uk-form-width-medium" type="submit" value="form-success">Tester</button>
+            </div>
+
+        </fieldset>
+    </form>
+
+    <% if (game) { %>
+       <h3>Votre mot : <%= game %></h3>
+    <% } %>
+
+    <% if (numberOfTries <= 0) { %>
+        <h3>Le mot était : <%= word %></h3>
+    <% } %>
+
+
+</main>
+
+</body>
+</html>
