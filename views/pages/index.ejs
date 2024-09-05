@@ -15,14 +15,21 @@
         <fieldset class="uk-fieldset">
 
             <legend class="uk-legend">Nombre d'essai restant : <%= numberOfTries %></legend>
+            <p>Score : <%= score %></p>
 
             <div class="uk-margin">
-                <input class="uk-input" type="text" name="word" placeholder="Tapez une lettre">
+                <input class="uk-input" maxlength="1" pattern="[a-zA-Z]" type="text" name="word" placeholder="Tapez une lettre" title="Veuillez selectionner une lettre">
             </div>
 
             <div class="uk-margin">
-                <button class="uk-input uk-button-danger uk-form-width-medium" type="submit" name="reset" value="true">Reset</button>
-                <button class="uk-input uk-button-secondary uk-form-width-medium" type="submit" value="form-success">Tester</button>
+                <!-- <button class="uk-input uk-button-danger uk-form-width-medium" type="submit" name="reset" value="true">Reset</button> !-->
+                <% if (numberOfTries == 0) { %>
+                    <span>Tu n'as plus d'essai</span>
+                <% } %>
+
+                <% if (numberOfTries > 0) { %>
+                    <button class="uk-input uk-button-secondary uk-form-width-medium" type="submit" value="form-success">Tester</button>
+                <% } %>
             </div>
 
         </fieldset>

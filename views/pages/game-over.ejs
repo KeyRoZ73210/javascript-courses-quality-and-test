@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over</title>
+</head>
+<body>
+<h1>Game Over</h1>
+<p>Your final score: <%= score %></p>
+<p>The word was: <%= word %></p>
+<p>Status: <%= result %></p>
+<form action="/save-score" method="POST">
+    <label for="pseudo">Enter your pseudo to save your score:</label>
+    <input type="text" id="pseudo" name="pseudo" required>
+    <input type="submit" value="Save Score">
+</form>
+</body>
+</html>
