@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Over</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-<h1>Game Over</h1>
-<p>Your final score: <%= score %></p>
-<p>The word was: <%= word %></p>
-<p>Status: <%= result %></p>
-<form action="/save-score" method="POST">
-    <label for="pseudo">Enter your pseudo to save your score:</label>
-    <input type="text" id="pseudo" name="pseudo" required>
-    <input type="submit" value="Save Score">
-</form>
-</body>
+  <body>
+    <h1>Game Over</h1>
+    <p>Your final score: <%= score %></p>
+    <p>The word was: <%= word %></p>
+    <p>Status: <%= result %></p>
+    <form action="/save-score" method="POST">
+      <label for="pseudo">Enter your pseudo to save your score:</label>
+      <input type="text" id="pseudo" name="pseudo" required>
+      <input type="submit" value="Save Score">
+    </form>
+    <div class="share-button">
+      <a href="https://twitter.com/intent/tweet?text=I+scored+<%= score %>+points+in+the+game!&url=<%= urlGame %>" target="_blank">Share on Twitter</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=<%= urlGame %>&quote=I scored <%= score %> points in the game!" target="_blank">Share on Facebook</a>
+      <a href="https://api.whatsapp.com/send?text=I scored <%= score %> points in the game! Play here: <%= urlGame %>" target="_blank">Share on WhatsApp</a>
+    </div>
+  </body>
 </html>

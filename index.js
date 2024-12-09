@@ -5,6 +5,7 @@ const Game = require('./game.js');
 const { getTopScores } = require('./db.js');
 
 const PORT = process.env.PORT || 3030;
+const URL_GAME = process.env.URL_GAME || `http://localhost:${PORT}`;
 
 const app = express();
 const game = new Game();
@@ -91,10 +92,10 @@ app.get('/game-over', (request, response) => {
         score: game.getScore(),
         word: game.word,
         result: game.unknowWord === game.word ? 'You Win!' : 'You Lose!',
-        numberOfTries: game.getNumberOfTries()
+        numberOfTries: game.getNumberOfTries(),
+        urlGame: URL_GAME
     });
 });
-
 
 (async () => {
     try {

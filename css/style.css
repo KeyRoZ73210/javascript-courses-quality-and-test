@@ -1,0 +1,19 @@
+body {
+  background-color: red;
+}
+
+.share-button {
+  border: 1px solid black;
+  padding: 30px;
+  background-color: transparent;
+  transition: all 0.5s ease-in-out;
+}
+
+.share-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.share-button a {
+  font-size: 1em;
+}

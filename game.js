@@ -30,19 +30,19 @@ class Game {
     }
 
     loadWords() {
-        return new Promise((resolve, reject) => {
-            fs.createReadStream('words_fr.txt')
-                .pipe(csv())
-                .on('data', (row) => {
-                    this.listOfWords.push(row.word.toLowerCase());
-                })
-                .on('end', () => {
-                    console.log('CSV file successfully processed');
-                    this.chooseWord();
-                    resolve();
-                })
-                .on('error', reject);
-        });
+      return new Promise((resolve, reject) => {
+        fs.createReadStream('words_fr.txt')
+          .pipe(csv())
+          .on('data', (row) => {
+            this.listOfWords.push(row.word.toLowerCase());
+          })
+          .on('end', () => {
+            console.log('CSV file successfully processed');
+            this.chooseWord();
+            resolve();
+          })
+          .on('error', reject);
+      });
     }
 
     chooseWord() {
@@ -57,7 +57,7 @@ class Game {
 
     guess(oneLetter) {
         if (this.numberOfTry === 0) {
-            return 'gameOver'; // Indique que le jeu est terminé
+            return 'gameOver';
         }
 
         if (typeof oneLetter !== "string" || oneLetter.length !== 1 || !/[a-z]/i.test(oneLetter)) {
@@ -84,7 +84,7 @@ class Game {
 
         if (oneLetterFound) {
             if (this.unknowWord === this.word) {
-                return 'win'; // Jeu gagné
+                return 'win';
             }
             return true;
         } else {
@@ -94,7 +94,7 @@ class Game {
                 this.score = 0;
             }
             if (this.numberOfTry === 0) {
-                return 'gameOver'; // Indique que le jeu est terminé
+                return 'gameOver';
             }
             return false;
         }
