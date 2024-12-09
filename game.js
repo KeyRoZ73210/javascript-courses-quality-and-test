@@ -13,6 +13,7 @@ class Game {
         this.startTime = null;
         this.word = null;
         this.unknowWord = null;
+        this.globalWord = null;
     }
 
     startChrono() {
@@ -46,13 +47,29 @@ class Game {
     }
 
     chooseWord() {
-        if (this.listOfWords.length > 0) {
-            this.word = this.listOfWords[tools.getRandomInt(this.listOfWords.length)];
-            this.unknowWord = this.word.replace(/./g, '#');
-            this.startChrono();
-        } else {
-            throw new Error("No words available to choose from.");
-        }
+      if (!this.globalWord) {
+          if (this.listOfWords.length > 0) {
+              this.globalWord = this.listOfWords[tools.getRandomInt(this.listOfWords.length)];
+          } else {
+              throw new Error("No words available to choose from.");
+          }
+      }
+      this.word = this.globalWord;
+      this.unknowWord = this.word.replace(/./g, '#');
+      this.startChrono();
+  }
+  
+
+    // Mot global 
+    setGlobalWord(word) {
+      this.globalWord = word.toLowerCase();
+      this.word = this.globalWord;
+      this.unknowWord = this.word.replace(/./g, '#');
+      this.startChrono();
+    }
+    
+    getGlobalWord() {
+      return this.globalWord;
     }
 
     guess(oneLetter) {

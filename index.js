@@ -100,6 +100,8 @@ app.get('/game-over', (request, response) => {
 (async () => {
     try {
         await game.loadWords();
+        game.chooseWord();
+        console.log("Game started with word:", game.word);
         app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
     } catch (error) {
         console.error("Failed to load words and start the server:", error);
