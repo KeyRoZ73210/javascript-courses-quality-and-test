@@ -1,7 +1,7 @@
 const tools = require('./tools.js');
 const csv = require('csv-parser');
 const fs = require('fs');
-const {db} = require('./db.js');
+const { db } = require('./db.js');
 
 class Game {
     constructor() {
@@ -31,23 +31,22 @@ class Game {
     }
 
     loadWords() {
-      return new Promise((resolve, reject) => {
-        fs.createReadStream('words_fr.txt')
-          .pipe(csv())
-          .on('data', (row) => {
-            this.listOfWords.push(row.word.toLowerCase());
-          })
-          .on('end', () => {
-            console.log('CSV file successfully processed');
-            this.chooseWord();
-            resolve();
-          })
-          .on('error', reject);
-      });
+        return new Promise((resolve, reject) => {
+            fs.createReadStream('words_fr.txt')
+                .pipe(csv())
+                .on('data', (row) => {
+                    this.listOfWords.push(row.word.toLowerCase());
+                })
+                .on('end', () => {
+                    console.log('CSV file successfully processed');
+                    this.chooseWord();
+                    resolve();
+                })
+                .on('error', reject);
+        });
     }
 
     chooseWord() {
-        // console.log("listOfWords:", this.listOfWords);
         if (this.listOfWords.length > 0) {
             this.word = this.listOfWords[tools.getRandomInt(this.listOfWords.length)];
             this.unknowWord = this.word.replace(/./g, '#');
@@ -56,27 +55,35 @@ class Game {
             throw new Error("No words available to choose from.");
         }
     }
-    
-  
 
     setGlobalWord(word) {
-      this.globalWord = word.toLowerCase();
-      this.word = this.globalWord;
-      this.unknowWord = this.word.replace(/./g, '#');
-      this.startChrono();
+        this.globalWord = word.toLowerCase();
+        this.word = this.globalWord;
+        this.unknowWord = this.word.replace(/./g, '#');
+        this.startChrono();
     }
-    
+
     getGlobalWord() {
-      return this.globalWord;
+        return this.globalWord;
+    }
+
+    
+    isGameOver() {
+        return this.numberOfTry <= 0 || this.unknowWord === this.word; 
+    }
+
+    
+    isWon() {
+        return this.unknowWord === this.word;  
     }
 
     guess(oneLetter) {
-        if (this.numberOfTry === 0) {
-            return 'gameOver';
+        if (this.isGameOver()) {
+            return this.isWon() ? 'win' : 'gameOver';
         }
 
         if (typeof oneLetter !== "string" || oneLetter.length !== 1 || !/[a-z]/i.test(oneLetter)) {
-            this.errorMessageInput = "Invalid input";
+            this.errorMessageInput = "Invalid input: please enter a single letter.";
             return false;
         }
 
@@ -115,12 +122,28 @@ class Game {
         }
     }
 
+    
     print() {
+        if (this.isGameOver()) {
+            return this.word;  
+        }
         return this.unknowWord;
     }
 
     getScore() {
         return this.score;
+    }
+
+    getTopScores() {
+        return new Promise((resolve, reject) => {
+            const query = `SELECT * FROM leaderboard ORDER BY score DESC LIMIT 1000`;
+            db.all(query, [], (err, rows) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(rows);
+            });
+        });
     }
 
     getNumberOfTries() {
