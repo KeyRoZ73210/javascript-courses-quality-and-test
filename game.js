@@ -47,20 +47,18 @@ class Game {
     }
 
     chooseWord() {
-      if (!this.globalWord) {
-          if (this.listOfWords.length > 0) {
-              this.globalWord = this.listOfWords[tools.getRandomInt(this.listOfWords.length)];
-          } else {
-              throw new Error("No words available to choose from.");
-          }
-      }
-      this.word = this.globalWord;
-      this.unknowWord = this.word.replace(/./g, '#');
-      this.startChrono();
-  }
+        // console.log("listOfWords:", this.listOfWords);
+        if (this.listOfWords.length > 0) {
+            this.word = this.listOfWords[tools.getRandomInt(this.listOfWords.length)];
+            this.unknowWord = this.word.replace(/./g, '#');
+            this.startChrono();
+        } else {
+            throw new Error("No words available to choose from.");
+        }
+    }
+    
   
 
-    // Mot global 
     setGlobalWord(word) {
       this.globalWord = word.toLowerCase();
       this.word = this.globalWord;
@@ -78,7 +76,7 @@ class Game {
         }
 
         if (typeof oneLetter !== "string" || oneLetter.length !== 1 || !/[a-z]/i.test(oneLetter)) {
-            this.errorMessageInput = "Invalid input: please enter a single letter.";
+            this.errorMessageInput = "Invalid input";
             return false;
         }
 
@@ -136,7 +134,7 @@ class Game {
                 if (err) {
                     return reject(err);
                 }
-                resolve(this.lastID); // retourne l'ID du dernier enregistrement
+                resolve(this.lastID);
             });
         });
     }

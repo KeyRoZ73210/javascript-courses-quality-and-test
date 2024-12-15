@@ -1,13 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
+    <%- include('../partials/head'); %>
 </head>
+
+<style>
+body {
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+h1::after, h1::before {
+    content: " 🔥";
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: bounce 0.5s infinite alternate; 
+}
+
+h1::after{
+    right: 35%; 
+}
+
+h1::before{
+    left: 35%; 
+}
+@keyframes bounce {
+    0% {
+        transform: translateY(-50%) scale(1);
+    }
+    100% {
+        transform: translateY(-50%) scale(1.2);
+    }
+}
+
+.leaderboard-table {
+    width: 100vw;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-table th, .leaderboard-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.leaderboard-table th {
+    background-color: #4A90E2;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.leaderboard-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.leaderboard-table tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+
+.leaderboard-table tr:nth-child(1) td:first-child {
+    background-color: #ffd700;
+    color: #fff;
+}
+
+.leaderboard-table tr:nth-child(2) td:first-child {
+    background-color: #c0c0c0; 
+    color: #fff;
+}
+
+.leaderboard-table tr:nth-child(3) td:first-child {
+    background-color: #cd7f32;
+    color: #fff;
+}
+
+.leaderboard-table td:first-child {
+    font-weight: bold;
+    color: #4A90E2;
+}
+
+@media (max-width: 768px) {
+    .leaderboard-table {
+        width: 100%;
+    }
+    .leaderboard-table th, .leaderboard-table td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+</style>
 <body>
 <h1>Leaderboard</h1>
-<table>
+<table class="leaderboard-table">
     <thead>
     <tr>
         <th>Rank</th>

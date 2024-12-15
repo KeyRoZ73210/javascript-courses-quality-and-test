@@ -1,18 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/head'); %>
     <title>Game Over</title>
-    <link rel="stylesheet" href="/css/style.css">
 </head>
+
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+
+    color: #000;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1 {
+    color: #e74c3c; 
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+}
+
+label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    font-size: 1rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border-color: #3498db;
+}
+
+input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+.share-button {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.share-button a {
+    display: inline-block;
+    background-color: #1da1f2;
+    color: white;
+    padding: 12px 25px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.share-button a:hover {
+    background-color: #0d8fd2;
+}
+
+.share-button a:nth-child(2) {
+    background-color: #3b5998; 
+}
+
+.share-button a:nth-child(2):hover {
+    background-color: #2d4373;
+}
+
+.share-button a:nth-child(3) {
+    background-color: #25d366;
+}
+
+.share-button a:nth-child(3):hover {
+    background-color: #128c7e;
+}
+
+</style>
   <body>
     <h1>Game Over</h1>
-    <p>Your final score: <%= score %></p>
-    <p>The word was: <%= word %></p>
-    <p>Status: <%= result %></p>
+    <p>Score final : <%= score %></p>
+    <p>Le mot est : <%= word %></p>
+    <p>Résultat : <%= result %></p>
     <form action="/save-score" method="POST">
-      <label for="pseudo">Enter your pseudo to save your score:</label>
+      <label for="pseudo">Écris ton pseudo pour enregistrer ton score</label>
       <input type="text" id="pseudo" name="pseudo" required>
       <input type="submit" value="Save Score">
     </form>

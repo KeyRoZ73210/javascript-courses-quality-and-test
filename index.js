@@ -31,20 +31,17 @@ app.get('/', (request, response) => {
 
 
 app.post('/', (request, response) => {
+    const { word } = request.body;
+
     try {
-        if (request.body.reset) {
-            console.log("Reset !");
-            game.reset();
-        } else if (request.body.word) {
-            const result = game.guess(request.body.word);
-            if (result === 'gameOver') {
-                return response.redirect('/game-over'); // Redirection vers la page de résultats
-            } else if (result === 'win') {
-                return response.redirect('/game-over'); // Redirection vers la page de résultats
-            }
-            console.log("Guess :" + request.body.word);
-        } else {
-            console.log("No word provided in the request body.");
+        if (!word) {
+            return response.status(400).send("Please provide a letter.");
+        }
+
+        const result = game.guess(word);
+
+        if (result === 'gameOver' || result === 'win') {
+            return response.redirect('/game-over');
         }
 
         response.render('pages/index', {
@@ -61,13 +58,14 @@ app.post('/', (request, response) => {
     }
 });
 
+
 app.get('/leaderboard', async (request, response) => {
     try {
         const topScores = await getTopScores();
         response.render('pages/leaderboard', { topScores });
     } catch (error) {
         console.error("Failed to retrieve top scores:", error);
-        response.status(500).send("An error occurred: " + error.message);
+        response.status(500).send("error: " + error.message);
     }
 });
 
@@ -82,8 +80,8 @@ app.post('/save-score', async (request, response) => {
         await game.saveScore(pseudo.trim());
         response.redirect('/leaderboard');
     } catch (error) {
-        console.error("Failed to save score:", error);
-        response.status(500).send("An error occurred: " + error.message);
+        console.error("error save score:", error);
+        response.status(500).send("error: " + error.message);
     }
 });
 
@@ -91,7 +89,7 @@ app.get('/game-over', (request, response) => {
     response.render('pages/game-over', {
         score: game.getScore(),
         word: game.word,
-        result: game.unknowWord === game.word ? 'You Win!' : 'You Lose!',
+        result: game.unknowWord === game.word ? 'Gagné !' : 'Perdu !',
         numberOfTries: game.getNumberOfTries(),
         urlGame: URL_GAME
     });
