@@ -25,3 +25,60 @@ Ce projet met l'accent sur les **bonnes pratiques de test** grâce à une approc
    ```bash
    git clone https://github.com/votre-repo/hangman-game.git
    cd hangman-game
+
+2. Installez les dépendances : 
+   ```bash
+   npm install
+
+3. Configurez le fichier .env :  
+   ```bash
+   cp .env.example .env
+
+4. Démarrez le serveur :  
+   ```bash
+   npm start
+
+---
+
+## 🧪 Tests 
+
+Ce projet utilise Jest pour les tests unitaires.
+
+1. Pour exécuter les tests, lancez simplement :  
+   ```bash
+   npm test
+
+---
+
+## . 📁 Structure du projet
+
+Ce projet utilise Jest pour les tests unitaires.
+
+1. Architecture :  
+   ```bash
+    ├── public/            # Fichiers statiques (HTML, CSS, JS client)
+    ├── views/             # Templates EJS pour l'interface du jeu
+    ├── test/              # Tests unitaires (game.test.js, tools.test.js)
+    ├── game.js            # Logique principale du jeu
+    ├── tools.js           # Fonctions utilitaires
+    ├── index.js           # Serveur Express et gestion des routes
+    ├── .env.example       # Exemple de configuration d'environnement
+
+---
+
+## 🧪 Tests 
+
+Ce projet utilise Jest pour les tests unitaires.
+
+- **Node.js** : Backend rapide et léger.
+- **Express.js** : Framework minimaliste pour gérer les routes.
+- **Jest** : Framework de test complet et facile à utiliser.  
+- **EJS** : Templates pour rendre l'interface du jeu.
+  
+---
+
+## 📜 Licence
+
+Ce projet utilise Jest pour les tests unitaires.
+
+- Ce projet est sous licence **MIT**.
