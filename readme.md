@@ -23,7 +23,7 @@ Ce projet met l'accent sur les **bonnes pratiques de test** grâce à une approc
 
 1. Clonez le dépôt :  
    ```bash
-   git clone https://github.com/votre-repo/hangman-game.git
+   git clone https://github.com/KeyRoZ73210/javascript-courses-quality-and-test.git
    cd hangman-game
 
 2. Installez les dépendances : 
