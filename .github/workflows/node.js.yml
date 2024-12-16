@@ -3,9 +3,9 @@ concurrency: production
 
 on:
   push:
-    branches: [ main ]
+    branches: [ develope ]
   pull_request:
-    branches: [ main ]
+    branches: [ develope ]
 
 jobs:
   build:
@@ -19,14 +19,47 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          cache: 'npm' # Cache npm dependencies
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm test
+      - name: Install Playwright dependencies
+        run: npx playwright install --with-deps
 
-      - name: Display test results
-        if: failure() # This step runs only if the tests fail
-        run: cat ./test-results.txt || echo "No test results file found"
+      - name: Install nodemon
+        run: npm install -g nodemon
+
+      # Démarrer le backend
+      - name: Start backend
+        run: |
+          nohup npm run dev & # Démarre le backend en arrière-plan
+          sleep 5          # Attendre que le serveur soit prêt
+        env:
+          NODE_ENV: test    # Si tu as besoin d'une configuration spécifique pour les tests
+
+      # Vérifier que le backend est en ligne
+      - name: Wait for backend
+        run: |
+          for i in {1..10}; do
+            curl --fail http://localhost:3030 || sleep 1
+          done
+
+      - name: Run Jest tests
+        run: npm run test:unit
+
+      - name: Run Playwright tests
+        run: npm run test:e2e
+
+      - name: Generate Playwright report
+        run: npm run test:e2e:report
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report/
+
+      - name: Display Playwright test summary
+        if: always()
+        run: echo "Playwright test summary generated"

@@ -1,4 +1,4 @@
-const tools = require('../tools.js');
+const tools = require('../../tools.js');
 
 describe('Tools Module', () => {
 

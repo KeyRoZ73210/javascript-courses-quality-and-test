@@ -15,7 +15,7 @@ jest.mock('sqlite3', () => {
     return sqlite3Mock;
 });
 
-const { getTopScores, canPlayToday, updateLastAttempt } = require('../db');
+const { getTopScores, canPlayToday, updateLastAttempt } = require('../../db');
 
 describe('Database functions', () => {
 

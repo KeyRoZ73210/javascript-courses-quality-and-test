@@ -1,39 +1,27 @@
-# Hangman Game
+# Hangman Game 🎮  
 
-This is a small project to build a classic Hangman game in JavaScript.
-The primary goal of this project is to practice and learn how to write tests using various tools and frameworks, including Jest.
+[![Node.js](https://img.shields.io/badge/Node.js-16%2B-green)](https://nodejs.org/)  
+[![Express.js](https://img.shields.io/badge/Express.js-%5E4.17.1-lightgrey)](https://expressjs.com/)  
+[![Jest Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://jestjs.io/)  
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)  
 
-**Test-Driven Development:** The project is structured to encourage writing tests for each feature of the game.
+Un projet simple pour créer le célèbre jeu du **pendu** en JavaScript.  
+Ce projet met l'accent sur les **bonnes pratiques de test** grâce à une approche orientée **Test-Driven Development (TDD)**.  
 
-## Getting Started
+---
 
-### Running the Game
+## 🚀 Fonctionnalités  
 
-To start the game, copy and paste the .env.example file to .env and set the PORT variable to 3030.
+- 🕹️ **Jouer au pendu** directement depuis votre navigateur.  
+- ✅ **Tests robustes** écrits avec Jest pour valider la logique du jeu.  
+- 📂 **Organisation claire du projet** avec des modules et des fichiers bien structurés.  
+- 🌐 **Interface interactive** rendue avec EJS.  
 
-Then use the following command:
+---
 
-```bash
-npm start
-```
+## 📦 Installation  
 
-This will start the server, and you can play the game by visiting `http://localhost:3030` in your browser.
-
-### Running Tests
-
-This project uses Jest for testing. To run the tests, use the following command:
-
-```bash
-npm test
-```
-
-The tests are designed to ensure that the game logic works correctly and to demonstrate best practices in test-driven development.
-
-## Project Structure
-
-- **`game.js`**: Contains the core game logic.
-- **`tools.js`**: Utility functions used in the game.
-- **`test/`**: Contains test files for each module (e.g., `game.test.js`, `tools.test.js`).
-- **`index.js`**: Main server file that sets up the Express app and routes.
-- **`public/`**: Static files such as HTML, CSS, and client-side JavaScript.
-- **`views/`**: EJS templates used to render the game interface.
+1. Clonez le dépôt :  
+   ```bash
+   git clone https://github.com/votre-repo/hangman-game.git
+   cd hangman-game
