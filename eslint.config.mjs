@@ -9,6 +9,7 @@ export default [
       "playwright-report/**",
       "node_modules/**",
       "dist/**",
+      "test/**",
     ],
   },
   {
