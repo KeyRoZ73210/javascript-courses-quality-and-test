@@ -1,9 +1,15 @@
 # Hangman Game 🎮  
 
-[![Node.js](https://img.shields.io/badge/Node.js-16%2B-green)](https://nodejs.org/)  
+<!-- [![Node.js](https://img.shields.io/badge/Node.js-16%2B-green)](https://nodejs.org/)  
 [![Express.js](https://img.shields.io/badge/Express.js-%5E4.17.1-lightgrey)](https://expressjs.com/)  
 [![Jest Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://jestjs.io/)  
-[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)  
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)   -->
+![Contributors](https://github.com/KeyRoZ73210/javascript-courses-quality-and-test/actions/workflows/node.js.yml/badge.svg)
+![Branches](https://github.com/KeyRoZ73210/javascript-courses-quality-and-test/raw/badges/badges/coverage-branches.svg)
+![Functions](https://github.com/KeyRoZ73210/javascript-courses-quality-and-test/raw/badges/badges/coverage-functions.svg)
+![Lines](https://github.com/KeyRoZ73210/javascript-courses-quality-and-test/raw/badges/badges/coverage-lines.svg)
+![Statements](https://github.com/KeyRoZ73210/javascript-courses-quality-and-test/raw/badges/badges/coverage-statements.svg)
+![Coverage total](https://github.com/KeyRoZ73210/javascript-courses-quality-and-test/raw/badges/badges/coverage-total.svg)
 
 Un projet simple pour créer le célèbre jeu du **pendu** en JavaScript.  
 Ce projet met l'accent sur les **bonnes pratiques de test** grâce à une approche orientée **Test-Driven Development (TDD)**.  
